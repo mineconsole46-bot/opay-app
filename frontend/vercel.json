@@ -1,0 +1,10 @@
+{
+  "buildCommand": "cd ../.. && pnpm install --frozen-lockfile && pnpm --filter @workspace/opay-app run build",
+  "outputDirectory": "dist/public",
+  "framework": null,
+  "rewrites": [
+    { "source": "/api/account/resolve", "destination": "/api/account/resolve" },
+    { "source": "/api/banks", "destination": "/api/banks" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
