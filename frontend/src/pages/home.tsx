@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 import { useBalance } from "@/hooks/useBalance";
 import { useState } from "react";
-import { Eye, EyeOff, Bell, ChevronRight, Plus, Zap, Home, Gift, TrendingUp, MessageCircle, Building2, Lock, DollarSign, Joystick, MoreHorizontal, BarChart3, Smartphone } from "lucide-react";
+import { Eye, EyeOff, Bell, ChevronRight, Plus, Zap, Home, Gift, TrendingUp, MessageCircle, Building2, Lock, DollarSign, Joystick, MoreHorizontal, BarChart3, Smartphone, Tv, Gamepad2 } from "lucide-react";
 
 export default function Home() {
   const { balance } = useBalance();
@@ -9,37 +9,40 @@ export default function Home() {
 
   return (
     <div className="flex flex-col flex-1 bg-background pb-24">
-      {/* Header with Status Bar Info */}
-      <header className="flex items-center justify-between p-4 pt-3 shrink-0 text-foreground">
+      {/* Header */}
+      <header className="flex items-center justify-between px-4 py-4 shrink-0 text-foreground bg-background border-b border-border/30">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center text-white font-bold text-sm">
-            OP
+          {/* Profile Avatar */}
+          <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-white font-bold text-lg overflow-hidden border-2 border-amber-500 flex-shrink-0">
+            <span>OP</span>
           </div>
-          <div>
-            <p className="text-sm text-foreground font-semibold">Hi, OPEYEMI</p>
-          </div>
+          <p className="text-lg text-foreground font-semibold">Hi,OPEYEMI</p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-4">
+          {/* Video/Broadcast Icon */}
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-muted-foreground flex-shrink-0">
+            <path d="M23 7l-7 5 7 5V7z" />
+            <rect x="1" y="5" width="15" height="14" rx="2" ry="2" />
+          </svg>
+          
+          {/* Screenshot Icon with HELP Badge */}
           <div className="relative">
-            <div className="w-6 h-6 bg-pink-500 rounded-full flex items-center justify-center text-white text-xs font-bold">
-              !
-            </div>
-            <span className="absolute -top-1 -right-1 text-[10px] font-bold text-pink-500">HELP</span>
-          </div>
-          <button className="p-1.5 hover:bg-card rounded-lg transition-colors">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-muted-foreground flex-shrink-0">
               <rect x="3" y="3" width="7" height="7" />
               <rect x="14" y="3" width="7" height="7" />
               <rect x="14" y="14" width="7" height="7" />
               <rect x="3" y="14" width="7" height="7" />
             </svg>
-          </button>
-          <Bell className="w-5 h-5" />
+            <div className="absolute -top-2 -right-2 bg-pink-500 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full whitespace-nowrap">HELP</div>
+          </div>
+          
+          {/* Bell Icon */}
+          <Bell className="w-6 h-6 flex-shrink-0" />
         </div>
       </header>
 
       {/* Main Content */}
-      <div className="px-4 flex-1 flex flex-col gap-4">
+      <div className="px-4 flex-1 flex flex-col gap-4 pt-4">
         {/* Balance Card - Teal/Cyan */}
         <div className="bg-gradient-to-br from-teal-400 to-teal-500 rounded-3xl p-6 text-black shadow-lg relative overflow-hidden shrink-0">
           <div className="absolute -right-8 -top-8 w-40 h-40 bg-white/20 rounded-full blur-3xl" />
@@ -69,7 +72,10 @@ export default function Home() {
           
           <div className="flex items-center justify-between relative z-10">
             <button className="flex items-center gap-2 px-4 py-2 bg-black/30 hover:bg-black/40 rounded-full transition-colors text-sm font-medium">
-              <Plus className="w-4 h-4" />
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
               Add Money
             </button>
           </div>
@@ -79,7 +85,7 @@ export default function Home() {
         <div className="bg-gradient-to-r from-teal-900/40 to-teal-800/40 border border-teal-700/50 rounded-2xl p-4 flex items-center justify-between shrink-0">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-teal-500/20 rounded-lg flex items-center justify-center">
-              <Zap className="w-5 h-5 text-teal-400" />
+              <Building2 className="w-5 h-5 text-teal-400" />
             </div>
             <div>
               <p className="text-sm font-medium text-foreground">Business Service - Today's Sales:</p>
