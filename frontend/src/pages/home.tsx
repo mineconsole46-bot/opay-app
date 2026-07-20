@@ -1,121 +1,179 @@
 import { Link } from "wouter";
 import { useBalance } from "@/hooks/useBalance";
 import { useState } from "react";
-import { Eye, EyeOff, User, Bell, ChevronRight, Smartphone, Wifi, Gamepad2, Tv, Lightbulb, GraduationCap, Plane, MoreHorizontal, ArrowRightLeft, Plus, Download } from "lucide-react";
+import { Eye, EyeOff, Bell, ChevronRight, MoreVertical, Plus, Zap, Home, Gift, TrendingUp, Wallet } from "lucide-react";
 
 export default function Home() {
   const { balance } = useBalance();
   const [showBalance, setShowBalance] = useState(true);
 
   return (
-    <div className="flex flex-col flex-1 bg-background pb-20">
-      {/* Header */}
-      <header className="flex items-center justify-between p-4 pt-4 shrink-0">
+    <div className="flex flex-col flex-1 bg-background pb-24">
+      {/* Header with Status Bar Info */}
+      <header className="flex items-center justify-between p-4 pt-3 shrink-0 text-foreground">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-card flex items-center justify-center overflow-hidden border border-border/50">
-            <User className="w-6 h-6 text-muted-foreground" />
+          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center text-white font-bold text-sm">
+            OP
           </div>
           <div>
-            <p className="text-sm text-foreground font-semibold">Hi, OPay User</p>
+            <p className="text-sm text-foreground font-semibold">Hi, OPEYEMI</p>
           </div>
         </div>
-        <div className="flex items-center gap-4">
-          <Link href="/transactions" className="text-sm font-medium text-primary">History</Link>
-          <Bell className="w-6 h-6" />
+        <div className="flex items-center gap-3">
+          <div className="relative">
+            <div className="w-6 h-6 bg-pink-500 rounded-full flex items-center justify-center text-white text-xs font-bold">
+              !
+            </div>
+            <span className="absolute -top-1 -right-1 text-[10px] font-bold text-pink-500">HELP</span>
+          </div>
+          <button className="p-1.5 hover:bg-card rounded-lg transition-colors">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <rect x="3" y="3" width="7" height="7" />
+              <rect x="14" y="3" width="7" height="7" />
+              <rect x="14" y="14" width="7" height="7" />
+              <rect x="3" y="14" width="7" height="7" />
+            </svg>
+          </button>
+          <Bell className="w-5 h-5" />
         </div>
       </header>
 
       {/* Main Content */}
-      <div className="px-4 flex-1 flex flex-col gap-6">
-        {/* Balance Card */}
-        <div className="bg-primary rounded-2xl p-5 text-primary-foreground shadow-lg relative overflow-hidden shrink-0">
-          <div className="absolute -right-4 -top-4 w-32 h-32 bg-white/10 rounded-full blur-2xl" />
+      <div className="px-4 flex-1 flex flex-col gap-4">
+        {/* Balance Card - Teal/Cyan */}
+        <div className="bg-gradient-to-br from-teal-400 to-teal-500 rounded-3xl p-6 text-black shadow-lg relative overflow-hidden shrink-0">
+          <div className="absolute -right-8 -top-8 w-40 h-40 bg-white/20 rounded-full blur-3xl" />
+          <div className="absolute -left-8 -bottom-8 w-32 h-32 bg-white/10 rounded-full blur-3xl" />
           
-          <div className="flex items-center justify-between mb-2 relative z-10">
-            <p className="text-sm font-medium opacity-90 flex items-center gap-2">
-              Total Balance
-              <button onClick={() => setShowBalance(!showBalance)} className="p-1 active:scale-90 transition-transform">
+          <div className="flex items-start justify-between mb-4 relative z-10">
+            <div className="flex items-center gap-2">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2">
+                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <p className="text-sm font-semibold">Available Balance</p>
+              <button onClick={() => setShowBalance(!showBalance)} className="p-0.5 hover:bg-white/20 rounded transition-colors">
                 {showBalance ? <Eye className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
               </button>
-            </p>
-            <Link href="/transactions" className="text-xs opacity-90 hover:opacity-100 flex items-center">
-              Transaction History <ChevronRight className="w-3 h-3 ml-0.5" />
+            </div>
+            <Link href="/transactions" className="text-xs font-medium flex items-center gap-1 hover:opacity-80 transition-opacity">
+              Transaction History <ChevronRight className="w-3 h-3" />
             </Link>
           </div>
+
           <div className="mb-6 relative z-10">
-            <h2 className="text-3xl font-bold tracking-tight">
+            <p className="text-sm font-medium opacity-90 mb-1">Balance</p>
+            <h2 className="text-4xl font-bold tracking-tight">
               {showBalance ? `₦${balance.toLocaleString('en-NG', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : '****'}
             </h2>
           </div>
           
-          <div className="flex items-center justify-between relative z-10 bg-white/10 rounded-xl p-1">
-            <button className="flex-1 py-2 flex flex-col items-center gap-1 hover:bg-white/10 rounded-lg transition-colors">
-              <Plus className="w-5 h-5" />
-              <span className="text-xs font-medium">Add Money</span>
-            </button>
-            <div className="w-[1px] h-8 bg-white/20" />
-            <Link href="/transfer" className="flex-1 py-2 flex flex-col items-center gap-1 hover:bg-white/10 rounded-lg transition-colors">
-              <ArrowRightLeft className="w-5 h-5" />
-              <span className="text-xs font-medium">Transfer</span>
-            </Link>
-            <div className="w-[1px] h-8 bg-white/20" />
-            <button className="flex-1 py-2 flex flex-col items-center gap-1 hover:bg-white/10 rounded-lg transition-colors">
-              <Download className="w-5 h-5" />
-              <span className="text-xs font-medium">Withdraw</span>
+          <div className="flex items-center justify-between relative z-10">
+            <button className="flex items-center gap-2 px-4 py-2 bg-black/30 hover:bg-black/40 rounded-full transition-colors text-sm font-medium">
+              <Plus className="w-4 h-4" />
+              Add Money
             </button>
           </div>
         </div>
 
-        {/* Services Grid */}
-        <div className="bg-card rounded-2xl p-4 shadow-sm border border-border/50 shrink-0">
-          <div className="grid grid-cols-4 gap-y-6 gap-x-2">
-            <ServiceIcon icon={Smartphone} label="Airtime" color="text-blue-500" />
-            <ServiceIcon icon={Wifi} label="Data" color="text-emerald-500" />
-            <ServiceIcon icon={Gamepad2} label="Betting" color="text-purple-500" />
-            <ServiceIcon icon={Tv} label="TV" color="text-orange-500" />
-            <ServiceIcon icon={Lightbulb} label="Electricity" color="text-yellow-500" />
-            <ServiceIcon icon={GraduationCap} label="Education" color="text-indigo-500" />
-            <ServiceIcon icon={Plane} label="Travel" color="text-sky-500" />
-            <ServiceIcon icon={MoreHorizontal} label="More" color="text-muted-foreground" />
+        {/* Business Service Card - Dark Teal */}
+        <div className="bg-gradient-to-r from-teal-900/40 to-teal-800/40 border border-teal-700/50 rounded-2xl p-4 flex items-center justify-between shrink-0">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-teal-500/20 rounded-lg flex items-center justify-center">
+              <Zap className="w-5 h-5 text-teal-400" />
+            </div>
+            <div>
+              <p className="text-sm font-medium text-foreground">Business Service - Today's Sales:</p>
+              <p className="text-lg font-bold text-teal-400">₦0.00</p>
+            </div>
+          </div>
+          <ChevronRight className="w-5 h-5 text-muted-foreground" />
+        </div>
+
+        {/* Quick Actions Grid */}
+        <div className="grid grid-cols-3 gap-3 shrink-0">
+          <QuickActionCard icon="💬" label="To OPay" />
+          <QuickActionCard icon="🏦" label="To Bank" />
+          <QuickActionCard icon="⬆️" label="Withdraw" />
+        </div>
+
+        {/* Newsletter Card */}
+        <div className="bg-gradient-to-r from-slate-800 to-slate-700 rounded-2xl p-4 flex items-center gap-3 shrink-0">
+          <div className="text-2xl">📧</div>
+          <div className="flex-1">
+            <p className="text-sm font-bold text-foreground">Take Control, Stay Informed</p>
+            <p className="text-xs text-muted-foreground">Add your email, get the latest from OPay</p>
+          </div>
+        </div>
+
+        {/* Services Grid - 4x2 */}
+        <div className="grid grid-cols-4 gap-3 shrink-0">
+          <ServiceIcon emoji="📱" label="Airtime" />
+          <ServiceIcon emoji="📊" label="Data" />
+          <ServiceIcon emoji="🎮" label="Betting" />
+          <ServiceIcon emoji="📺" label="TV" />
+          <ServiceIcon emoji="🔒" label="SafeBox" />
+          <ServiceIcon emoji="💰" label="Loan" />
+          <ServiceIcon emoji="🎯" label="GameCenter" />
+          <ServiceIcon emoji="⋯" label="More" />
+        </div>
+
+        {/* Smart Picks Section */}
+        <div className="shrink-0">
+          <p className="text-sm font-bold text-foreground mb-3">Smart Picks for You</p>
+          <div className="bg-gradient-to-r from-teal-900/30 to-teal-800/30 border border-teal-700/50 rounded-2xl p-4 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="text-2xl">💰</div>
+              <div>
+                <p className="text-sm font-bold text-foreground">SafeBox</p>
+                <p className="text-xs text-muted-foreground">Deposit & earn massive returns</p>
+              </div>
+            </div>
+            <button className="px-4 py-2 bg-teal-500 hover:bg-teal-600 text-black font-semibold rounded-full text-sm transition-colors">
+              Go
+            </button>
           </div>
         </div>
       </div>
 
-      {/* Bottom Nav */}
-      <div className="absolute bottom-0 left-0 right-0 bg-card border-t border-border/50 flex justify-between items-center px-6 py-3 pb-8 z-50">
-        <NavItem icon={HomeIcon} label="Home" active />
-        <NavItem icon={RewardsIcon} label="Rewards" />
-        <NavItem icon={FinanceIcon} label="Finance" />
-        <NavItem icon={CardsIcon} label="Cards" />
-        <NavItem icon={MeIcon} label="Me" />
+      {/* Bottom Navigation */}
+      <div className="fixed bottom-0 left-0 right-0 max-w-[390px] mx-auto bg-background border-t border-border/50 flex justify-between items-center px-4 py-3 pb-6 z-50">
+        <NavItem icon="🏠" label="Home" active />
+        <NavItem icon="🎁" label="Rewards" />
+        <NavItem icon="📈" label="Finance" />
+        <NavItem icon="💳" label="Cards" />
+        <NavItem icon="👤" label="Me" />
       </div>
     </div>
   );
 }
 
-function ServiceIcon({ icon: Icon, label, color }: { icon: any, label: string, color: string }) {
+function QuickActionCard({ icon, label }: { icon: string; label: string }) {
+  return (
+    <div className="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-4 flex flex-col items-center gap-3 active:scale-95 transition-transform cursor-pointer hover:bg-slate-800/70">
+      <div className="w-12 h-12 bg-teal-500/20 rounded-2xl flex items-center justify-center text-xl">
+        {icon}
+      </div>
+      <span className="text-xs font-medium text-foreground text-center">{label}</span>
+    </div>
+  );
+}
+
+function ServiceIcon({ emoji, label }: { emoji: string; label: string }) {
   return (
     <div className="flex flex-col items-center gap-2 active:scale-95 transition-transform cursor-pointer">
-      <div className="w-12 h-12 rounded-full bg-background flex items-center justify-center border border-border/50 shadow-sm">
-        <Icon className={`w-6 h-6 ${color}`} />
+      <div className="w-12 h-12 rounded-2xl bg-slate-800/50 border border-slate-700/50 flex items-center justify-center text-lg hover:bg-slate-800/70 transition-colors">
+        {emoji}
       </div>
-      <span className="text-[11px] text-muted-foreground font-medium">{label}</span>
+      <span className="text-[11px] text-muted-foreground font-medium text-center">{label}</span>
     </div>
   );
 }
 
-// Simple icons for bottom nav
-function HomeIcon({ active }: { active?: boolean }) { return <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={active ? "hsl(var(--primary))" : "currentColor"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>; }
-function RewardsIcon({ active }: { active?: boolean }) { return <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={active ? "hsl(var(--primary))" : "currentColor"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>; }
-function FinanceIcon({ active }: { active?: boolean }) { return <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={active ? "hsl(var(--primary))" : "currentColor"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>; }
-function CardsIcon({ active }: { active?: boolean }) { return <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={active ? "hsl(var(--primary))" : "currentColor"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>; }
-function MeIcon({ active }: { active?: boolean }) { return <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={active ? "hsl(var(--primary))" : "currentColor"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>; }
-
-function NavItem({ icon: Icon, label, active }: { icon: any, label: string, active?: boolean }) {
+function NavItem({ icon, label, active }: { icon: string; label: string; active?: boolean }) {
   return (
-    <div className="flex flex-col items-center gap-1 cursor-pointer">
-      <Icon active={active} />
-      <span className={`text-[10px] font-medium ${active ? 'text-primary' : 'text-muted-foreground'}`}>{label}</span>
+    <div className={`flex flex-col items-center gap-1 cursor-pointer transition-colors ${active ? 'text-teal-500' : 'text-muted-foreground'}`}>
+      <span className="text-lg">{icon}</span>
+      <span className={`text-[10px] font-medium ${active ? 'text-teal-500' : 'text-muted-foreground'}`}>{label}</span>
     </div>
   );
 }
