@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 import { useBalance } from "@/hooks/useBalance";
 import { useState } from "react";
-import { Eye, EyeOff, Bell, ChevronRight, MoreVertical, Plus, Zap, Home, Gift, TrendingUp, Wallet } from "lucide-react";
+import { Eye, EyeOff, Bell, ChevronRight, Plus, Zap, Home, Gift, TrendingUp, MessageCircle, Building2, Lock, DollarSign, Joystick, MoreHorizontal, BarChart3, Smartphone } from "lucide-react";
 
 export default function Home() {
   const { balance } = useBalance();
@@ -91,14 +91,34 @@ export default function Home() {
 
         {/* Quick Actions Grid */}
         <div className="grid grid-cols-3 gap-3 shrink-0">
-          <QuickActionCard icon="💬" label="To OPay" />
-          <QuickActionCard icon="🏦" label="To Bank" />
-          <QuickActionCard icon="⬆️" label="Withdraw" />
+          <Link href="/transfer/opay" className="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-4 flex flex-col items-center gap-3 active:scale-95 transition-transform hover:bg-slate-800/70">
+            <div className="w-12 h-12 bg-teal-500/20 rounded-2xl flex items-center justify-center">
+              <MessageCircle className="w-6 h-6 text-teal-400" />
+            </div>
+            <span className="text-xs font-medium text-foreground text-center">To OPay</span>
+          </Link>
+          <Link href="/transfer/bank" className="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-4 flex flex-col items-center gap-3 active:scale-95 transition-transform hover:bg-slate-800/70">
+            <div className="w-12 h-12 bg-teal-500/20 rounded-2xl flex items-center justify-center">
+              <Building2 className="w-6 h-6 text-teal-400" />
+            </div>
+            <span className="text-xs font-medium text-foreground text-center">To Bank</span>
+          </Link>
+          <button className="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-4 flex flex-col items-center gap-3 active:scale-95 transition-transform hover:bg-slate-800/70">
+            <div className="w-12 h-12 bg-teal-500/20 rounded-2xl flex items-center justify-center">
+              <TrendingUp className="w-6 h-6 text-teal-400" />
+            </div>
+            <span className="text-xs font-medium text-foreground text-center">Withdraw</span>
+          </button>
         </div>
 
         {/* Newsletter Card */}
         <div className="bg-gradient-to-r from-slate-800 to-slate-700 rounded-2xl p-4 flex items-center gap-3 shrink-0">
-          <div className="text-2xl">📧</div>
+          <div className="w-10 h-10 bg-slate-600 rounded-lg flex items-center justify-center flex-shrink-0">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2">
+              <rect x="2" y="4" width="20" height="16" rx="2" />
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+            </svg>
+          </div>
           <div className="flex-1">
             <p className="text-sm font-bold text-foreground">Take Control, Stay Informed</p>
             <p className="text-xs text-muted-foreground">Add your email, get the latest from OPay</p>
@@ -107,14 +127,14 @@ export default function Home() {
 
         {/* Services Grid - 4x2 */}
         <div className="grid grid-cols-4 gap-3 shrink-0">
-          <ServiceIcon emoji="📱" label="Airtime" />
-          <ServiceIcon emoji="📊" label="Data" />
-          <ServiceIcon emoji="🎮" label="Betting" />
-          <ServiceIcon emoji="📺" label="TV" />
-          <ServiceIcon emoji="🔒" label="SafeBox" />
-          <ServiceIcon emoji="💰" label="Loan" />
-          <ServiceIcon emoji="🎯" label="GameCenter" />
-          <ServiceIcon emoji="⋯" label="More" />
+          <ServiceIcon icon={Smartphone} label="Airtime" />
+          <ServiceIcon icon={BarChart3} label="Data" />
+          <ServiceIcon icon={Gamepad2} label="Betting" />
+          <ServiceIcon icon={Tv} label="TV" />
+          <ServiceIcon icon={Lock} label="SafeBox" />
+          <ServiceIcon icon={DollarSign} label="Loan" />
+          <ServiceIcon icon={Joystick} label="GameCenter" />
+          <ServiceIcon icon={MoreHorizontal} label="More" />
         </div>
 
         {/* Smart Picks Section */}
@@ -122,7 +142,9 @@ export default function Home() {
           <p className="text-sm font-bold text-foreground mb-3">Smart Picks for You</p>
           <div className="bg-gradient-to-r from-teal-900/30 to-teal-800/30 border border-teal-700/50 rounded-2xl p-4 flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="text-2xl">💰</div>
+              <div className="w-10 h-10 bg-teal-500/20 rounded-lg flex items-center justify-center">
+                <Lock className="w-5 h-5 text-teal-400" />
+              </div>
               <div>
                 <p className="text-sm font-bold text-foreground">SafeBox</p>
                 <p className="text-xs text-muted-foreground">Deposit & earn massive returns</p>
@@ -137,42 +159,31 @@ export default function Home() {
 
       {/* Bottom Navigation */}
       <div className="fixed bottom-0 left-0 right-0 max-w-[390px] mx-auto bg-background border-t border-border/50 flex justify-between items-center px-4 py-3 pb-6 z-50">
-        <NavItem icon="🏠" label="Home" active />
-        <NavItem icon="🎁" label="Rewards" />
-        <NavItem icon="📈" label="Finance" />
-        <NavItem icon="💳" label="Cards" />
-        <NavItem icon="👤" label="Me" />
+        <NavItem icon={Home} label="Home" active />
+        <NavItem icon={Gift} label="Rewards" />
+        <NavItem icon={BarChart3} label="Finance" />
+        <NavItem icon={Smartphone} label="Cards" />
+        <NavItem icon={Eye} label="Me" />
       </div>
     </div>
   );
 }
 
-function QuickActionCard({ icon, label }: { icon: string; label: string }) {
-  return (
-    <div className="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-4 flex flex-col items-center gap-3 active:scale-95 transition-transform cursor-pointer hover:bg-slate-800/70">
-      <div className="w-12 h-12 bg-teal-500/20 rounded-2xl flex items-center justify-center text-xl">
-        {icon}
-      </div>
-      <span className="text-xs font-medium text-foreground text-center">{label}</span>
-    </div>
-  );
-}
-
-function ServiceIcon({ emoji, label }: { emoji: string; label: string }) {
+function ServiceIcon({ icon: Icon, label }: { icon: any; label: string }) {
   return (
     <div className="flex flex-col items-center gap-2 active:scale-95 transition-transform cursor-pointer">
-      <div className="w-12 h-12 rounded-2xl bg-slate-800/50 border border-slate-700/50 flex items-center justify-center text-lg hover:bg-slate-800/70 transition-colors">
-        {emoji}
+      <div className="w-12 h-12 rounded-2xl bg-slate-800/50 border border-slate-700/50 flex items-center justify-center hover:bg-slate-800/70 transition-colors">
+        <Icon className="w-6 h-6 text-teal-400" />
       </div>
       <span className="text-[11px] text-muted-foreground font-medium text-center">{label}</span>
     </div>
   );
 }
 
-function NavItem({ icon, label, active }: { icon: string; label: string; active?: boolean }) {
+function NavItem({ icon: Icon, label, active }: { icon: any; label: string; active?: boolean }) {
   return (
     <div className={`flex flex-col items-center gap-1 cursor-pointer transition-colors ${active ? 'text-teal-500' : 'text-muted-foreground'}`}>
-      <span className="text-lg">{icon}</span>
+      <Icon className={`w-5 h-5 ${active ? 'text-teal-500' : 'text-muted-foreground'}`} />
       <span className={`text-[10px] font-medium ${active ? 'text-teal-500' : 'text-muted-foreground'}`}>{label}</span>
     </div>
   );
