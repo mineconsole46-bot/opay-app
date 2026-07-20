@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 import { useBalance } from "@/hooks/useBalance";
 import { useState } from "react";
-import { Eye, EyeOff, Bell, ChevronRight, Plus, Zap, Home, Gift, TrendingUp, MessageCircle, Building2, Lock, DollarSign, Joystick, MoreHorizontal, BarChart3, Smartphone, Tv, Gamepad2 } from "lucide-react";
+import { Eye, EyeOff, Bell, ChevronRight, Plus, Zap, Home as HomeIcon, Gift, TrendingUp, MessageCircle, Building2, Lock, DollarSign, Joystick, MoreHorizontal, BarChart3, Smartphone, Tv, Gamepad2 } from "lucide-react";
 
 export default function Home() {
   const { balance } = useBalance();
@@ -165,7 +165,7 @@ export default function Home() {
 
       {/* Bottom Navigation */}
       <div className="fixed bottom-0 left-0 right-0 max-w-[390px] mx-auto bg-background border-t border-border/50 flex justify-between items-center px-4 py-3 pb-6 z-50">
-        <NavItem icon={Home} label="Home" active />
+        <NavItem icon={HomeIcon} label="Home" active />
         <NavItem icon={Gift} label="Rewards" />
         <NavItem icon={BarChart3} label="Finance" />
         <NavItem icon={Smartphone} label="Cards" />
